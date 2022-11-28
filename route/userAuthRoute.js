@@ -2,7 +2,6 @@ const express = require("express");
 const path = require("path");
 const userAuthController = require("../controller/userAuthController");
 const router = express.Router();
-
 router.post("/signup", userAuthController.signup);
 router.post("/loginWithPassword", userAuthController.loginWithPassword);
 router.post("/login", userAuthController.login);
@@ -15,7 +14,7 @@ router.post("/verifyReceivedMobileOTP", userAuthController.verifyReceivedMobileO
 router.use(userAuthController.protect); //below this protected routes
 router.patch("/resetPassword", userAuthController.resetPassword);
 // router.post("/uploadProfilePicture", userAuthController.uploadProfilePictureFS);
-// router.get("/getProfilePicture", userAuthController.getProfilePicture);
+// router.get("/getProfilePicture", userAuthController.getProfilePicture);//
 
 // TESTING ROUTE
 router.get("/test-route", (req, res, next) => {
