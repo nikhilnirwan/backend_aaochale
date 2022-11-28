@@ -1,5 +1,5 @@
 const path = require("path");
-require("dotenv").config();
+require("dotenv").config({ path: path.join(__dirname, "..", "config.env") });
 // const axios = require("axios");
 const twilio = require("twilio")(process.env.TWILIO_ACC_SID, process.env.TWILIO_AUTH_TOKEN);
 const Email = require(path.join(__dirname, "..", "utils", "Email"));
