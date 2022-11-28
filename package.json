@@ -5,8 +5,7 @@
   "main": "sever.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js",
-    "delete": "node helpers/deleteDb.js"
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
@@ -43,7 +42,7 @@
     "winston": "^3.8.2"
   },
   "devDependencies": {
-    "nodemon": "^2.0.19"
+    "nodemon": "^2.0.20"
   },
   "engines": {
     "node": ">=10.0.0"

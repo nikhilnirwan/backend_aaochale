@@ -14,14 +14,14 @@ server.setTimeout(29000);
 process.on("uncaughtException", (err) => {
   console.log(`Error ${err.message} ${err}`);
   console.log(`Shutting down the server due to Uncaught Exception`);
-  process.exit();
+  process.exit(1);
 });
 
 process.on("unhandledRejection", (err) => {
   console.log(`Error ${err.message} ${err}`);
   console.log(`Shutting down the server due to Unhandled Promise Rejection`);
   server.close(() => {
-    process.exit();
+    process.exit(1);
   });
 });
 
