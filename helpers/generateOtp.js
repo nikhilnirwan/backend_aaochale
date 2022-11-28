@@ -1,7 +1,11 @@
 const path = require("path");
 require("dotenv").config({ path: path.join(__dirname, "..", "config.env") });
 // const axios = require("axios");
-const twilio = require("twilio")(process.env.TWILIO_ACC_SID, process.env.TWILIO_AUTH_TOKEN);
+const TWILIO_ACC_SID = "AC96af7b6e9bc1bf94e10447f39110207c";
+const TWILIO_AUTH_TOKEN = "71a4ebd4b78f8b089a7c2ccf4f73ee95";
+const TWILIO_SERVER_MOBILE = +19706967159;
+const twilio = require("twilio");
+// (process.env.TWILIO_ACC_SID, process.env.TWILIO_AUTH_TOKEN);
 const Email = require(path.join(__dirname, "..", "utils", "Email"));
 // this function only sends otp to mailtrap for email and password otp verification, but can be configured for mobile as well
 const generateOtp = async function (mode, user, message, body) {
