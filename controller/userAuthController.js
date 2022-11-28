@@ -97,7 +97,7 @@ exports.loginWithPassword = catchAsync(async (req, res, next) => {
   if (!(await encryptPassword.unHashPassword(password, doc.password))) {
     return next(new AppErr("Password is Incorrect", 400));
   }
-  // if (!doc?.email?.isEmailVerified) return next(new AppErr("Please Verify Your Email Address To Login", 401));
+  // if (!doc?.email?.isEmailVerified) return next(new AppErr("Please Verify Your Email Address To Login", 401));//
   createSendToken(doc, 200, res);
 });
 
