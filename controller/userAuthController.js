@@ -130,8 +130,8 @@ exports.login = catchAsync(async (req, res, next) => {
 
 // create jwt by using mobile otp
 exports.loginMobileOTP = catchAsync(async (req, res, next) => {
-  const { otp, mobile } = req.body;
-  if (!mobile) {
+  const { mobile, otp } = req.body;
+  if (!mobile || !otp) {
     res.status(400).json({
       status: "fail",
       data: {
