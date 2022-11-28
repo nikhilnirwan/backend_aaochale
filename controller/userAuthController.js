@@ -97,7 +97,7 @@ exports.loginWithPassword = catchAsync(async (req, res, next) => {
   if (!(await encryptPassword.unHashPassword(password, doc.password))) {
     return next(new AppErr("Password is Incorrect", 400));
   }
-  if (!doc?.email?.isEmailVerified) return next(new AppErr("Please Verify Your Email Address To Login", 401));
+  // if (!doc?.email?.isEmailVerified) return next(new AppErr("Please Verify Your Email Address To Login", 401));
   createSendToken(doc, 200, res);
 });
 
@@ -151,7 +151,7 @@ exports.loginMobileOTP = catchAsync(async (req, res, next) => {
   if (!(doc?.verificationToken?.mobileToken === otp)) return next(new AppErr("OTP Entered Is Incorrect", 400));
   // update token fields in document
 
-  if (!doc?.mobile?.isMobileVerified) return next(new AppErr("Please Verify Your Mobile Address To Login", 401));
+  // if (!doc?.mobile?.isMobileVerified) return next(new AppErr("Please Verify Your Mobile Address To Login", 401));
 
   createSendToken(doc, 200, res);
 });
