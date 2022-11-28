@@ -148,7 +148,7 @@ exports.loginMobileOTP = catchAsync(async (req, res, next) => {
   const currDate = new Date(Date.now());
   if (doc?.verificationToken?.mobileTokenExpiry < currDate) return next(new AppErr("OTP Expired", 400));
   // verify otp
-  if (!(doc?.verificationToken?.mobileToken === otp)) return next(new AppErr("OTP Entered Is Incorrect", 400));
+  if (!(doc?.verificationToken?.mobileToken == otp)) return next(new AppErr("OTP Entered Is Incorrect", 400));
   // update token fields in document
 
   // if (!doc?.mobile?.isMobileVerified) return next(new AppErr("Please Verify Your Mobile Address To Login", 401));
