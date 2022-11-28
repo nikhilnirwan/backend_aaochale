@@ -5,7 +5,10 @@
   "main": "sever.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node server.js",
+    "dev": "nodemon server.js",
+    "prd": "node server.js",
+    "delete": "node helpers/deleteDb.js"
   },
   "repository": {
     "type": "git",
