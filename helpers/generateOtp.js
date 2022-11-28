@@ -23,24 +23,23 @@ const generateOtp = async function (mode, user, message, body) {
     }
   }
   if (mode === "mobile") {
-    const mobileNumber = user.mobile.mobileNumber;
-    //send mobile otp
-    const twilSMSOption = {
-      from: process.env.TWILIO_SERVER_MOBILE,
-      to: mobileNumber,
-      // messagingServiceSid: "MG4ea94fc1141f49a4db600bb5474f84e9",
-      body: `Aaoo-chale verification code is ${otp}. Valid for 10 minutes`,
-    };
-
-    await twilio.messages.create(twilSMSOption);
-    // try {
-    //   await axios({
-    //     method: "post",
-    //     url: `http://login.wishbysms.com/api/sendhttp.php?authkey=385083AFyfh9O163732bcfP1&mobiles=${mobileNumber}&message=(${otp}) is your One Time Password(OTP) to confirm your mobile number at SLWORLDJOBS.COM&sender=SLWORL&route=4&country=91&DLT_TE_ID=1307166780842464065`,
-    //   });
-    // } catch (err) {
-    //   throw err;
-    // }
+    // const mobileNumber = user.mobile.mobileNumber;
+    // //send mobile otp
+    // const twilSMSOption = {
+    //   from: process.env.TWILIO_SERVER_MOBILE,
+    //   to: mobileNumber,
+    //   // messagingServiceSid: "MG4ea94fc1141f49a4db600bb5474f84e9",
+    //   body: `Aaoo-chale verification code is ${otp}. Valid for 10 minutes`,
+    // };
+    // await twilio.messages.create(twilSMSOption);
+    // // try {
+    // //   await axios({
+    // //     method: "post",
+    // //     url: `http://login.wishbysms.com/api/sendhttp.php?authkey=385083AFyfh9O163732bcfP1&mobiles=${mobileNumber}&message=(${otp}) is your One Time Password(OTP) to confirm your mobile number at SLWORLDJOBS.COM&sender=SLWORL&route=4&country=91&DLT_TE_ID=1307166780842464065`,
+    // //   });
+    // // } catch (err) {
+    // //   throw err;
+    // // }
   }
   // if (mode === "password") {
   //   await new Email(user, otp).send(message, body);
