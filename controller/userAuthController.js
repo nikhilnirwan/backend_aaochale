@@ -145,13 +145,13 @@ exports.loginMobileOTP = catchAsync(async (req, res, next) => {
   if (!doc?.verificationToken?.mobileToken && !doc?.verificationToken?.mobileTokenExpiry)
     return next(new AppErr("Token Not Issued, Route Is FORBIDDEN", 403));
   // check if time expired
-  const currDate = new Date(Date.now());
-  if (doc?.verificationToken?.mobileTokenExpiry < currDate) return next(new AppErr("OTP Expired", 400));
+  // const currDate = new Date(Date.now());
+  // if (doc?.verificationToken?.mobileTokenExpiry < currDate) return next(new AppErr("OTP Expired", 400));
   // verify otp
   if (!(doc?.verificationToken?.mobileToken == otp)) return next(new AppErr("OTP Entered Is Incorrect", 400));
   // update token fields in document
 
-  // if (!doc?.mobile?.isMobileVerified) return next(new AppErr("Please Verify Your Mobile Address To Login", 401));
+  if (!doc?.mobile?.isMobileVerified) return next(new AppErr("Please Verify Your Mobile Address To Login", 401));
 
   createSendToken(doc, 200, res);
 });
