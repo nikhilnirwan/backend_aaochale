@@ -24,7 +24,7 @@ const createSendToken = (user, statusCode, res) => {
     expires: new Date(Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000),
     httpOnly: true,
   };
-  if (process.env.NODE_ENV === "development") cookieOptions.secure = true; // only for the https
+  // if (process.env.NODE_ENV === "development") cookieOptions.secure = true; // only for the https
 
   res.cookie("jwt", token, cookieOptions);
   user.password = undefined; // hide password field from the response of document
