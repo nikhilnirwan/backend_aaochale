@@ -1,6 +1,6 @@
 const path = require("path");
 const jwt = require("jsonwebtoken");
-require("dotenv").config({ path: path.join(__dirname, "config.env") });
+require("dotenv").config({ path: path.join(__dirname, "..", "config.env") });
 const multer = require("multer");
 const { promisify } = require("util");
 const generateOtp = require(path.join(__dirname, "..", "helpers", "generateOtp"));
@@ -113,7 +113,7 @@ exports.login = catchAsync(async (req, res, next) => {
       await generateOtp("mobile", doc, "Please Verify OTP , OTP Expires in 10 Minutes");
     } catch (err) {
       return res.status(500).json({
-        status: "fail",
+        status: false,
         message: "Unable To Send Otp, Please Try Later....",
       });
     }
@@ -132,7 +132,7 @@ exports.login = catchAsync(async (req, res, next) => {
       await generateOtp("mobile", user, "Please Verify OTP , OTP Expires in 10 Minutes");
     } catch (err) {
       return res.status(500).json({
-        status: "fail",
+        status: false,
         message: "Unable To Send Otp, Please Try Later....",
       });
     }
@@ -161,6 +161,8 @@ exports.loginMobileOTP = catchAsync(async (req, res, next) => {
   }
   const doc = await User.findOne({ "mobile.mobileNumber": mobile });
 
+  console.log("///////", doc);
+
   const currDate = new Date(Date.now());
   if (doc?.verificationToken?.mobileTokenExpiry < currDate) return next(new AppErr("OTP Expired", 400));
   // verify otp
@@ -169,10 +171,10 @@ exports.loginMobileOTP = catchAsync(async (req, res, next) => {
   doc.verificationToken.mobileToken = undefined;
   doc.verificationToken.mobileTokenExpiry = undefined;
   doc.mobile.isMobileVerified = true;
-  await doc.save();
-  // if (!doc?.mobile?.isMobileVerified) return next(new AppErr("Please Verify Your Mobile Address To Login", 401));
+  const user = await doc.save();
+  if (!user?.mobile?.isMobileVerified) return next(new AppErr("Please Verify Your Mobile Address To Login", 401));
 
-  createSendToken(doc, 200, res);
+  createSendToken(user, 200, res);
 });
 
 //PROTECT route to chake user is login or not
