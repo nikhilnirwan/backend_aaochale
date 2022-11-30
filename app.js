@@ -23,7 +23,7 @@ const app = express();
 //   "http://superadmin.slworldjobs.com",
 //   "http://localhost:3000",
 // ];
-app.disable("etag");
+// app.disable("etag");
 app.use(logger("dev"));
 // app.use(cors({ credentials: true, origin: whiteList }));
 app.options("*", cors());
